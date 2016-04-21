@@ -38,36 +38,56 @@ class ViewController: UIViewController {
     }
     
     @IBAction func selectSearch() {
-        var url: NSURL?
-        if textBox.hasText() {
-            let urlText = "\(urlRoot)\(searchSuffix)\(textBox.text!)&api_key=\(key!)"
-            url = NSURL(string: urlText)
-        } else {
-            url = NSURL(string: "\(urlRoot)\(defaultSuffix)&api_key=\(key)")
-        }
-        let request = NSMutableURLRequest(URL: url!)
+        let url = constructUrl()
+        let request = NSMutableURLRequest(URL: url)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, res, err in
             if let responseData = data {
-                let repairedData = self.processFlickrResponse(responseData)
-                do {
-                    
-                    let json = try NSJSONSerialization.JSONObjectWithData(repairedData, options: .AllowFragments)
-                    print(json)
-                } catch {
-                    print("error: \(error)")
-                }
+                self.processFlickrResponse(responseData)
             }
             
         }
         task.resume()
-        
     }
     
-    private func processFlickrResponse(response: NSData) -> NSData {
+    func constructUrl() -> NSURL{
+        if textBox.hasText() {
+            let urlText = "\(urlRoot)\(searchSuffix)\(textBox.text!)&api_key=\(key!)"
+            return NSURL(string: urlText)!
+        } else {
+            return NSURL(string: "\(urlRoot)\(defaultSuffix)&api_key=\(key)")!
+        }
+
+    }
+    private func processFlickrResponse(response: NSData) {
+        do {
+        let formattedData = formatData(response)
+        let dictionary = try convertDataToDictionar(formattedData)
+        search?.complete(parseDictionary(dictionary))
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func formatData(response: NSData) -> NSData {
         let range = 14...(response.length-2)
         let nsRange = NSRange(range)
-        let trimmedData = response.subdataWithRange(nsRange)
+        return response.subdataWithRange(nsRange)
+    }
+    
+    private func convertDataToDictionar(data: NSData) throws -> NSDictionary {
+            return try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
+    }
+        
+    private func parseDictionary(dictionary: NSDictionary) -> [CIImage] {
+        var images = [CIImage]()
+        let outerDict = dictionary["photos"] as! NSDictionary
+        let dictArray = outerDict["photo"] as! [NSDictionary]
+        for dict in dictArray {
+            let image = Image(dict: dict).Image
+            images.append(image!)
+        }
+        return images
     }
     
     func getKey() -> String? {
