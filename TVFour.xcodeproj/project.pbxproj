@@ -7,19 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8100496D1CC9475900F7FBD0 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8100496C1CC9475900F7FBD0 /* Image.swift */; };
 		811BD0D01CC6A62500600FA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811BD0CF1CC6A62500600FA0 /* AppDelegate.swift */; };
 		811BD0D21CC6A62500600FA0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811BD0D11CC6A62500600FA0 /* ViewController.swift */; };
 		811BD0D51CC6A62500600FA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 811BD0D31CC6A62500600FA0 /* Main.storyboard */; };
 		811BD0D71CC6A62500600FA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 811BD0D61CC6A62500600FA0 /* Assets.xcassets */; };
+		811BD0DF1CC6A95D00600FA0 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811BD0DE1CC6A95D00600FA0 /* Search.swift */; };
+		811BD0E11CC6A9D600600FA0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 811BD0E01CC6A9D600600FA0 /* .gitignore */; };
+		811BD0E31CC6AB1400600FA0 /* flickr.api in Resources */ = {isa = PBXBuildFile; fileRef = 811BD0E21CC6AB1400600FA0 /* flickr.api */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8100496C1CC9475900F7FBD0 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		811BD0CC1CC6A62500600FA0 /* TVFour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVFour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		811BD0CF1CC6A62500600FA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		811BD0D11CC6A62500600FA0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		811BD0D41CC6A62500600FA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		811BD0D61CC6A62500600FA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		811BD0D81CC6A62500600FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		811BD0DE1CC6A95D00600FA0 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		811BD0E01CC6A9D600600FA0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		811BD0E21CC6AB1400600FA0 /* flickr.api */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flickr.api; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +62,13 @@
 			children = (
 				811BD0CF1CC6A62500600FA0 /* AppDelegate.swift */,
 				811BD0D11CC6A62500600FA0 /* ViewController.swift */,
+				8100496C1CC9475900F7FBD0 /* Image.swift */,
 				811BD0D31CC6A62500600FA0 /* Main.storyboard */,
 				811BD0D61CC6A62500600FA0 /* Assets.xcassets */,
 				811BD0D81CC6A62500600FA0 /* Info.plist */,
+				811BD0DE1CC6A95D00600FA0 /* Search.swift */,
+				811BD0E01CC6A9D600600FA0 /* .gitignore */,
+				811BD0E21CC6AB1400600FA0 /* flickr.api */,
 			);
 			path = TVFour;
 			sourceTree = "<group>";
@@ -120,6 +132,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				811BD0D71CC6A62500600FA0 /* Assets.xcassets in Resources */,
+				811BD0E31CC6AB1400600FA0 /* flickr.api in Resources */,
+				811BD0E11CC6A9D600600FA0 /* .gitignore in Resources */,
 				811BD0D51CC6A62500600FA0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,6 +145,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				811BD0DF1CC6A95D00600FA0 /* Search.swift in Sources */,
+				8100496D1CC9475900F7FBD0 /* Image.swift in Sources */,
 				811BD0D21CC6A62500600FA0 /* ViewController.swift in Sources */,
 				811BD0D01CC6A62500600FA0 /* AppDelegate.swift in Sources */,
 			);
@@ -276,6 +292,7 @@
 				811BD0DD1CC6A62500600FA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
