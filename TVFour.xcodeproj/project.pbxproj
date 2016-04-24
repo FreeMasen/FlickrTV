@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8100496D1CC9475900F7FBD0 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8100496C1CC9475900F7FBD0 /* Image.swift */; };
+		8100496F1CC994D400F7FBD0 /* collectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8100496E1CC994D400F7FBD0 /* collectionCell.swift */; };
 		811BD0D01CC6A62500600FA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811BD0CF1CC6A62500600FA0 /* AppDelegate.swift */; };
 		811BD0D21CC6A62500600FA0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811BD0D11CC6A62500600FA0 /* ViewController.swift */; };
 		811BD0D51CC6A62500600FA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 811BD0D31CC6A62500600FA0 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		8100496C1CC9475900F7FBD0 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		8100496E1CC994D400F7FBD0 /* collectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectionCell.swift; sourceTree = "<group>"; };
 		811BD0CC1CC6A62500600FA0 /* TVFour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVFour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		811BD0CF1CC6A62500600FA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		811BD0D11CC6A62500600FA0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				811BD0DE1CC6A95D00600FA0 /* Search.swift */,
 				811BD0E01CC6A9D600600FA0 /* .gitignore */,
 				811BD0E21CC6AB1400600FA0 /* flickr.api */,
+				8100496E1CC994D400F7FBD0 /* collectionCell.swift */,
 			);
 			path = TVFour;
 			sourceTree = "<group>";
@@ -105,6 +108,7 @@
 				TargetAttributes = {
 					811BD0CB1CC6A62500600FA0 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = DBJG6JJ766;
 					};
 				};
 			};
@@ -148,6 +152,7 @@
 				811BD0DF1CC6A95D00600FA0 /* Search.swift in Sources */,
 				8100496D1CC9475900F7FBD0 /* Image.swift in Sources */,
 				811BD0D21CC6A62500600FA0 /* ViewController.swift in Sources */,
+				8100496F1CC994D400F7FBD0 /* collectionCell.swift in Sources */,
 				811BD0D01CC6A62500600FA0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,10 +259,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TVFour/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.minneapolis.TVFour;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -266,10 +274,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TVFour/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.minneapolis.TVFour;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

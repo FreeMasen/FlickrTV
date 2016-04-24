@@ -62,17 +62,35 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="Lxe-ka-Ily">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collectionCell" id="Lxe-ka-Ily" customClass="CollectionCell" customModule="TVFour" customModuleProvider="target">
                                         <rect key="frame" x="10" y="10" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h34-71-8Cf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="0.81000000000000005" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="h34-71-8Cf" firstAttribute="centerX" secondItem="Lxe-ka-Ily" secondAttribute="centerX" id="6jY-Cz-X8O"/>
+                                            <constraint firstItem="h34-71-8Cf" firstAttribute="centerY" secondItem="Lxe-ka-Ily" secondAttribute="centerY" id="Hce-f5-6sB"/>
+                                            <constraint firstItem="h34-71-8Cf" firstAttribute="width" secondItem="Lxe-ka-Ily" secondAttribute="width" id="eLx-0c-5Ln"/>
+                                            <constraint firstItem="h34-71-8Cf" firstAttribute="height" secondItem="Lxe-ka-Ily" secondAttribute="height" id="fkb-aL-y0P"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="image" destination="h34-71-8Cf" id="Tbv-Gy-dBG"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="b1y-Id-5Gg"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="l5x-qw-B6o"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -87,6 +105,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="collectionView" destination="Va2-RB-W6J" id="wA5-zT-ZWK"/>
                         <outlet property="searchButton" destination="CYl-aL-37U" id="fZd-wO-P08"/>
                         <outlet property="spinner" destination="EFe-vF-A3q" id="BAM-Wd-Pzq"/>
                         <outlet property="textBox" destination="GO9-PK-Xu2" id="Fr2-rE-dHB"/>

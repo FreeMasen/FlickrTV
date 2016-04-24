@@ -1,11 +1,13 @@
+
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var collectionView: UICollectionView!
     var key: String? = nil {
         didSet {
             if key != nil {
-                spin()
+                spinStop()
             }
         }
     }
@@ -13,20 +15,20 @@ class ViewController: UIViewController {
     //to you these you must have your flickr apikey stored in a filed titled flickr.api
     //as a json style dictionary
     //{"key": "yourkeyhere"}
-    let defaultSuffix = "method=flickr.photos.getRecent&format=json&"
-    let searchSuffix = "method=flickr.photos.search&format=json&text="
+    let defaultSuffix = "method=flickr.photos.getRecent&format=json&per_page=50&"
+    let searchSuffix = "method=flickr.photos.search&format=json&per_page=50&text="
     
     @IBOutlet var textBox: UITextField!
     @IBOutlet var searchButton: UIButton!
     @IBOutlet var spinner: UIActivityIndicatorView!
     
     
-    var search: Search?
+    var images = [CIImage]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        spin()
+        spinStart()
         while key == nil {
             key = getKey()
         }
@@ -38,12 +40,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func selectSearch() {
+        spinStart()
         let url = constructUrl()
         let request = NSMutableURLRequest(URL: url)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, res, err in
             if let responseData = data {
+                print(NSString(data: responseData, encoding: 8))
                 self.processFlickrResponse(responseData)
+                self.collectionView.reloadData()
+                self.spinStop()
             }
             
         }
@@ -52,18 +58,36 @@ class ViewController: UIViewController {
     
     func constructUrl() -> NSURL{
         if textBox.hasText() {
-            let urlText = "\(urlRoot)\(searchSuffix)\(textBox.text!)&api_key=\(key!)"
+            let term = parseSearch(textBox.text!)
+            let urlText = "\(urlRoot)\(searchSuffix)\(term)&api_key=\(key!)"
             return NSURL(string: urlText)!
         } else {
-            return NSURL(string: "\(urlRoot)\(defaultSuffix)&api_key=\(key)")!
+            let urlText = "\(urlRoot)\(defaultSuffix)&api_key=\(key!)"
+            return NSURL(string: urlText)!
         }
 
     }
+    
+    func parseSearch(term: String) -> String {
+        let set = NSCharacterSet(charactersInString: ".,/';[]\\")
+        let trimmedString = term.stringByTrimmingCharactersInSet(set)
+        var finalString = ""
+        for char in trimmedString.characters {
+            if char == " " {
+                finalString.appendContentsOf("%20")
+            } else {
+                finalString.appendContentsOf("char")
+            }
+        }
+        return finalString
+    }
+    
     private func processFlickrResponse(response: NSData) {
         do {
-        let formattedData = formatData(response)
-        let dictionary = try convertDataToDictionar(formattedData)
-        search?.complete(parseDictionary(dictionary))
+            let formattedData = formatData(response)
+            let dictionary = try convertDataToDictionar(formattedData)
+            parseDictionary(dictionary)
+        images = parseDictionary(dictionary)
         } catch {
             print(error)
         }
@@ -80,12 +104,13 @@ class ViewController: UIViewController {
     }
         
     private func parseDictionary(dictionary: NSDictionary) -> [CIImage] {
+        print(dictionary)
         var images = [CIImage]()
         let outerDict = dictionary["photos"] as! NSDictionary
         let dictArray = outerDict["photo"] as! [NSDictionary]
         for dict in dictArray {
-            let image = Image(dict: dict).Image
-            images.append(image!)
+            images.append(Image(dict: dict).Image!)
+            collectionView.reloadData()
         }
         return images
     }
@@ -105,16 +130,27 @@ class ViewController: UIViewController {
         return key
     }
     
-    func spin() {
-        if spinner.isAnimating() {
-            spinner.stopAnimating()
-            textBox.enabled = true
-            searchButton.enabled = true
-        } else {
-            spinner.startAnimating()
-            textBox.enabled = false
-            searchButton.enabled = false
-        }
+    func spinStart() {
+        spinner.startAnimating()
+        textBox.enabled = false
+        searchButton.enabled = false
+    }
+    
+    func spinStop() {
+        spinner.stopAnimating()
+        textBox.enabled = true
+        searchButton.enabled = true
+
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return images.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! CollectionCell
+        cell.image.image = UIImage(CIImage: (images[indexPath.row]))
+        return cell
     }
 }
 

@@ -13,10 +13,15 @@ struct Image {
     var Image: CIImage?
     
     init(dict: NSDictionary) {
-        FarmId = dict["farm"] as! Int
-        ServerId = dict["server"] as! Int
-        Id = dict["id"] as! Int
-        Secret = dict["secret"]  as! String
+        let fid = dict["farm"] as! Int
+        let sid = dict["server"] as! String
+        let id = dict["id"] as! String
+        let sec = dict["secret"] as! String
+
+        FarmId = fid
+        ServerId = Int(sid)!
+        Id = Int(id)!
+        Secret = String(sec)
         Image = CIImage(contentsOfURL: Url)
     }
 }
