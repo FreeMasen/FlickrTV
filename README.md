@@ -9,12 +9,12 @@ the application opens. Once they enter text in this box and select
 the search button, the application will start the
 activity indicator animation.
 
-TODO: insert main blank SS
+![main screen](http://i.imgur.com/dPN5NHf.png)
 
 after the images have been retrieved they will be
 displayed on the screen.
 
-TODO: insert populated SS
+![search results](http://i.imgur.com/7ARr3dd.png)
 
 Code
 -------------
@@ -128,3 +128,8 @@ func parseSearch(term: String) -> String {
          return images 
      } 
 ```
+notes
+-------
+One of the interesting things about working with the tvOS
+was the inability to use device storage.  This presented some 
+interesting challenges.
